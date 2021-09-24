@@ -4,7 +4,9 @@
   "description": "multi-user real-time simulation",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build:client && npm run serve:server",
     "serve:client": "webpack serve --config-name client",
+    "serve:server": "npm run build:server && npm run start:server",
     "watch:server": "webpack --config-name server --watch",
     "start:client": "node ./dist/client/bundle.js",
     "start:server": "node ./dist/server/bundle.js",
@@ -14,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "html-webpack-plugin": "^5.3.2",
     "ts-loader": "^9.2.5",
     "webpack": "^5.52.0",
@@ -21,6 +24,7 @@
     "webpack-dev-server": "^4.1.1"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "node-gameloop": "^0.1.4",
     "socket.io": "^4.2.0",
     "socket.io-client": "^4.2.0",
