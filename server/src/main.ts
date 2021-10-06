@@ -11,10 +11,10 @@ const io = new Server(server);
 const moveSpeed = 100;
 const updateFn: UpdateFnType = (state, inputs, dt) => {
     inputs.forEach(input => {
-        if(typeof input.up !== undefined) state.dir.up = input.up;
-        if(typeof input.down !== undefined) state.dir.down = input.down;
-        if(typeof input.left !== undefined) state.dir.left = input.left;
-        if(typeof input.right !== undefined) state.dir.right = input.right;
+        if ('up' in input) { state.dir.up = input.up }
+        if ('down' in input) { state.dir.down = input.down }
+        if ('left' in input) { state.dir.left = input.left }
+        if ('right' in input) { state.dir.right = input.right }
     });
     if (state.dir.up) state.y -= dt * moveSpeed;
     if (state.dir.down) state.y += dt * moveSpeed;
