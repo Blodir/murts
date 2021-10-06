@@ -1,4 +1,4 @@
-import { SimInput, SimState } from '../../shared/model';
+import { SimState } from '../../shared/model';
 import { Engine, UpdateFnType } from './engine';
 import { ConnectionManager } from './connection-manager';
 
@@ -13,7 +13,11 @@ ctx.fillStyle = 'red';
 const updateFn: UpdateFnType = (prevState: SimState, nextState: SimState, dt: number) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillRect(lerp(prevState.x, nextState.x, dt), lerp(prevState.y, nextState.y, dt), 100, 100);
+    for (let i = 0; i < Object.keys(prevState.pcs).length; i++) {
+        const prevPcs = Object.values(prevState.pcs);
+        const nextPcs = Object.values(nextState.pcs);
+        ctx.fillRect(lerp(prevPcs[i].x, nextPcs[i].x, dt), lerp(prevPcs[i].y, nextPcs[i].y, dt), 100, 100);
+    }
 };
 
 const eng = new Engine(updateFn.bind(this));

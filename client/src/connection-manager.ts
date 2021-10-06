@@ -1,6 +1,6 @@
 
 import * as io from 'socket.io-client';
-import { SimInput, SimState } from '../../shared/model';
+import { MoveInput, SimInputWrapper, SimState } from '../../shared/model';
 import { Engine } from './engine';
 
 let ping = 50;
@@ -26,7 +26,10 @@ export class ConnectionManager {
 		});
 	}
 
-	sendSimInput(input: SimInput) {
-		this.socket.emit('input', input);
+	sendSimInput(input: MoveInput) {
+		this.socket.emit('input', {
+			type: 'move',
+			data: input
+		});
 	}
 }

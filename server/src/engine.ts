@@ -1,11 +1,14 @@
-import { SimInput, SimState } from "../../shared/model";
+import { SimInputWrapper, SimState } from "../../shared/model";
 import * as gameloop from 'node-gameloop';
 
-export type UpdateFnType = (state: SimState, inputs: SimInput[], dt: number) => void;
+export type UpdateFnType = (state: SimState, inputs: AugmentedSimInputWrapper[], dt: number) => void;
+export interface AugmentedSimInputWrapper extends SimInputWrapper {
+	source: string;
+}
 
 export class Engine {
-	simState: SimState = {x: 0, y: 0, dir: {up: false, down: false, left: false, right: false}};
-	private inputs: SimInput[] = [];
+	simState: SimState = {pcs: {}};
+	private inputs: AugmentedSimInputWrapper[] = [];
 
 	constructor(private updateFn: UpdateFnType, private stateCb: Function) {}
 
@@ -17,7 +20,7 @@ export class Engine {
 		}, 100);
 	}
 
-	receiveInput(input: SimInput) {
+	receiveInput(input: AugmentedSimInputWrapper) {
 		this.inputs.push(input);
 	}
 }
