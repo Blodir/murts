@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    container_name: murts
+
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    depends_on: 
+      - web
+    container_name: murts_nginx
