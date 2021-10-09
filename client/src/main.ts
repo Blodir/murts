@@ -8,7 +8,7 @@ canvas.style.backgroundColor = "#eeeeee"
 canvas.width = window.innerWidth - 20;
 canvas.height = window.innerHeight - 20;
 const ctx = canvas.getContext('2d');
-ctx.fillStyle = 'red';
+ctx.fillStyle = 'blue';
 
 const updateFn: UpdateFnType = (prevState: SimState, nextState: SimState, dt: number) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
