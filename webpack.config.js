@@ -1,8 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const serverConfig = {
-	name: "server",
+const developmentServerConfig = {
+	name: "dev-server",
 	target: 'node',
   mode: 'development',
   entry: './server/src/main.ts',
@@ -15,7 +15,39 @@ const serverConfig = {
           {
             loader: 'ts-loader',
             options: {
-              configFile: path.resolve(__dirname, "server", "tsconfig.json")
+              configFile: path.resolve(__dirname, "server", "tsconfig.development.json")
+            }
+          }
+        ]
+      }
+    ]
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist', 'server')
+  },
+  plugins: [
+  ]
+};
+
+const productionServerConfig = {
+	name: "prod-server",
+	target: 'node',
+  mode: 'production',
+  entry: './server/src/main.ts',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.resolve(__dirname, "server", "tsconfig.production.json")
             }
           }
         ]
@@ -68,4 +100,4 @@ const clientConfig = {
   ]
 };
 
-module.exports = [serverConfig, clientConfig];
+module.exports = [developmentServerConfig, productionServerConfig, clientConfig];

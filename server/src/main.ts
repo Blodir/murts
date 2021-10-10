@@ -1,6 +1,7 @@
 import { Server } from 'socket.io';
 import * as express from "express";
 import { Engine, UpdateFnType } from './engine';
+import { environment } from 'environment';
 
 const path = require('path');
 const http = require('http');

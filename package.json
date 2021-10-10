@@ -4,14 +4,17 @@
   "description": "multi-user real-time simulation",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build:client && npm run serve:server",
+    "start": "npm run build:client && npm run serve:server:dev",
+    "start:prod": "npm run build:client && npm run serve:server:prod",
     "serve:client": "webpack serve --config-name client",
-    "serve:server": "npm run build:server && npm run start:server",
+    "serve:server:dev": "npm run build:server:dev && npm run start:server",
+    "serve:server:prod": "npm run build:server:prod && npm run start:server",
     "watch:server": "webpack --config-name server --watch",
     "start:client": "node ./dist/client/bundle.js",
     "start:server": "node ./dist/server/bundle.js",
     "build:client": "webpack --config-name client",
-    "build:server": "webpack --config-name server"
+    "build:server:dev": "webpack --config-name dev-server",
+    "build:server:prod": "webpack --config-name prod-server"
   },
   "author": "",
   "license": "ISC",
