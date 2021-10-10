@@ -3,7 +3,7 @@ import { MoveInput, SimState } from '../../shared/model';
 import { Engine } from './engine';
 
 export class ConnectionManager {
-	private socket = io.default({transports: ['websocket']});
+	private socket = io.default({transports: ['websocket'], secure: true});
 	private ping = 50; // TODO GET ACTUAL REAL PING
 
 	constructor() {
