@@ -1,12 +1,11 @@
 
 import * as io from 'socket.io-client';
-import { MoveInput, SimInputWrapper, SimState } from '../../shared/model';
+import { MoveInput, SimState } from '../../shared/model';
 import { Engine } from './engine';
-
-let ping = 50;
 
 export class ConnectionManager {
 	private socket = io.default();
+	private ping = 50; // TODO GET ACTUAL REAL PING
 
 	constructor() {
 		this.socket.on('connect', () => {
@@ -21,7 +20,7 @@ export class ConnectionManager {
 		this.socket.on('state', (state: SimState) => {
 				eng.receiveState({
 						state,
-						time: performance.now() - (ping / 2)
+						time: performance.now() - (this.ping / 2)
 				});
 		});
 	}

@@ -57,7 +57,6 @@ io.on('connection', (socket) => {
         });
     });
     socket.on('input', (input) => {
-        // TODO: augment input
         try {
             if (input.type === 'move') {
                 eng.receiveInput({

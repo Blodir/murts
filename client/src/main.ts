@@ -8,12 +8,13 @@ canvas.style.backgroundColor = "#eeeeee"
 canvas.width = window.innerWidth - 20;
 canvas.height = window.innerHeight - 20;
 const ctx = canvas.getContext('2d');
-ctx.fillStyle = 'blue';
+ctx.fillStyle = 'red';
 
 const updateFn: UpdateFnType = (prevState: SimState, nextState: SimState, dt: number) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < Object.keys(prevState.pcs).length; i++) {
+        if (nextState.pcs[i]) continue;
         const prevPcs = Object.values(prevState.pcs);
         const nextPcs = Object.values(nextState.pcs);
         ctx.fillRect(lerp(prevPcs[i].x, nextPcs[i].x, dt), lerp(prevPcs[i].y, nextPcs[i].y, dt), 100, 100);
