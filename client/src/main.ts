@@ -13,11 +13,9 @@ ctx.fillStyle = 'red';
 const updateFn: UpdateFnType = (prevState: SimState, nextState: SimState, dt: number) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let i = 0; i < Object.keys(prevState.pcs).length; i++) {
-        if (nextState.pcs[i]) continue;
-        const prevPcs = Object.values(prevState.pcs);
-        const nextPcs = Object.values(nextState.pcs);
-        ctx.fillRect(lerp(prevPcs[i].x, nextPcs[i].x, dt), lerp(prevPcs[i].y, nextPcs[i].y, dt), 100, 100);
+    for (let id of Object.keys(prevState.pcs)) {
+        if (!(id in nextState.pcs)) { continue; }
+        ctx.fillRect(lerp(prevState.pcs[id].x, nextState.pcs[id].x, dt), lerp(prevState.pcs[id].y, nextState.pcs[id].y, dt), 100, 100);
     }
 };
 
