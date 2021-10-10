@@ -1,10 +1,9 @@
-
 import * as io from 'socket.io-client';
 import { MoveInput, SimState } from '../../shared/model';
 import { Engine } from './engine';
 
 export class ConnectionManager {
-	private socket = io.default();
+	private socket = io.default({transports: ['websocket']});
 	private ping = 50; // TODO GET ACTUAL REAL PING
 
 	constructor() {
