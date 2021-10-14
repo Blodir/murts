@@ -4,7 +4,6 @@ import { Engine } from './engine';
 
 export class ConnectionManager {
 	private socket = io.default({transports: ['websocket'], secure: true});
-	private ping = 50; // TODO GET ACTUAL REAL PING
 
 	constructor() {
 		this.socket.on('connect', () => {
@@ -19,7 +18,7 @@ export class ConnectionManager {
 		this.socket.on('state', (state: SimState) => {
 				eng.receiveState({
 						state,
-						time: performance.now() - (this.ping / 2)
+						time: performance.now()
 				});
 		});
 	}
