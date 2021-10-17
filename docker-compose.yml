@@ -11,8 +11,11 @@ services:
   nginx:
     build: ./nginx
     restart: unless-stopped
+    volumes:
+      - ./nginx/ssl/challenges:/challenges
     ports:
       - 80:80
+      - 443:443
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
     depends_on: 
