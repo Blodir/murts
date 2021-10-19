@@ -1,4 +1,4 @@
-# Real-time multi-user simulation
+# Multi-user real-time simulation
 A simple client / authoritative server synchronization implementation with Socket.io. The server sends state to each user, each client then interpolates between the previously received state and visualizes the state using the html canvas api. Each client sends their inputs to the server.
 
 [Read the wiki for a technical overview.](https://github.com/Blodir/murts/wiki)
